@@ -18,7 +18,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($password !== $confirm_password) {
         $error = 'Passwords do not match!';
     } else {
-        // Check if user exists
         $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
         $stmt->execute([$email, $username]);
         
@@ -49,44 +48,42 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <div class="card shadow">
-                    <div class="card-header bg-success text-white text-center">
-                        <h4><i class="fas fa-user-plus me-2"></i>Create Account</h4>
-                    </div>
-                    <div class="card-body">
-                        <?php if($error): ?>
-                            <div class="alert alert-danger"><?php echo $error; ?></div>
-                        <?php endif; ?>
-                        <?php if($success): ?>
-                            <div class="alert alert-success"><?php echo $success; ?></div>
-                        <?php endif; ?>
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="confirm_password" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100">Register</button>
-                        </form>
-                        <div class="mt-3 text-center">
-                            <a href="login.php">Already have an account? Login here</a>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="auth-card">
+            <div class="auth-title">
+                <i class="fas fa-crown me-2"></i>DailyNeeds
+            </div>
+            <p class="auth-subtitle">Create your account</p>
+            
+            <?php if($error): ?>
+                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php endif; ?>
+            <?php if($success): ?>
+                <div class="alert alert-success"><?php echo $success; ?></div>
+            <?php endif; ?>
+            
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Choose a username" required>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn-blue w-100">Register</button>
+            </form>
+            <div class="text-center mt-3">
+                <span style="color:var(--gray);">Already have an account?</span>
+                <a href="login.php" class="auth-link">Sign In</a>
             </div>
         </div>
     </div>
