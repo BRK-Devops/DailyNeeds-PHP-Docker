@@ -2,20 +2,16 @@ version: '3.8'
 
 services:
   web:
-    build: .
-    container_name: dailyneeds-web
+    image: brkdockerhub/phpapplication:phpimage
     ports:
       - "8080:80"
     volumes:
       - ./:/var/www/html
-    depends_on:
-      - db
     networks:
       - dailyneeds-network
 
   db:
     image: mysql:8.0
-    container_name: dailyneeds-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
@@ -32,15 +28,12 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: dailyneeds-phpmyadmin
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
       UPLOAD_LIMIT: 100M
     ports:
       - "8081:80"
-    depends_on:
-      - db
     networks:
       - dailyneeds-network
 
@@ -49,4 +42,5 @@ volumes:
 
 networks:
   dailyneeds-network:
-    driver: bridge
+    driver: overlay
+    attachable: true
