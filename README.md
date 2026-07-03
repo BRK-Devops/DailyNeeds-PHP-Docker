@@ -11,7 +11,7 @@
 ![SonarQube](https://img.shields.io/badge/SonarQube-4E9BCD?style=for-the-badge&logo=sonarqube&logoColor=white)
 ![Trivy](https://img.shields.io/badge/Trivy-1904DA?style=for-the-badge&logo=aquasecurity&logoColor=white)
 
-**Status:** ![Build](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square) ![Quality Gate](https://img.shields.io/badge/Quality%20Gate-Passed-brightgreen?style=flat-square) ![Vulnerabilities](https://img.shields.io/badge/Vulnerabilities-0-brightgreen?style=flat-square) ![Version](https://img.shields.io/badge/UI-v2%20Premium-blue?style=flat-square)
+**Status:** ![Build](https://img.shields.io/badge/Build-Passed-brightgreen?style=flat-square) ![Quality Gate](https://img.shields.io/badge/Quality%20Gate-Passed-brightgreen?style=flat-square) ![Vulnerabilities](https://img.shields.io/badge/Vulnerabilities-0-brightgreen?style=flat-square) ![Version](https://img.shields.io/badge/UI-v2%20Premium-blue?style=flat-square)
 
 </div>
 
@@ -251,7 +251,9 @@ erDiagram
 
 **v2 — `feature/UI-updating` branch** (`users`, `cart` & `categories` queried together)
 
-![db-users-cart-categories-v2](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/db-users&cart&cateogries-v2.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/db-users%26cart%26categories-v2.png" alt="db-users-cart-categories-v2" width="800"/>
+</p>
 
 ---
 
@@ -419,7 +421,7 @@ Full evidence set available in [`/output-sccreenshots`](https://github.com/BRK-D
 
 ### 👨‍💻 Author
 
-**Rohit Kumar B.** — DevOps & Full-Stack Development
+**Behara Rohit kumar** — **Software Engineer-DevOps**
 📧 behara.rohitkumar1@gmail.com
 
 *Built with PHP, secured with SonarQube & Trivy, shipped with Jenkins & Docker.*
