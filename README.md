@@ -237,6 +237,22 @@ erDiagram
 | `users` | ✅ 2 registered users | ✅ 1 registered user (`rohitkumar.b`) |
 | `cart` | ✅ 4 active cart items | ✅ 4 active cart items |
 
+### 🖥️ SQL Query Output — Live Database Screenshots
+
+**v1 — `main` branch** (queried individually per table)
+
+| `products` | `categories` |
+|---|---|
+| ![db-products-v1](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/db-products-v1.png) | ![db-categories-v1](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/db-categories-v1.png) |
+
+| `users` | `cart` |
+|---|---|
+| ![db-users-v1](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/db-users-v1.png) | ![db-cart-v1](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/db-cart-v1.png) |
+
+**v2 — `feature/UI-updating` branch** (`users`, `cart` & `categories` queried together)
+
+![db-users-cart-categories-v2](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/db-users&cart&cateogries-v2.png)
+
 ---
 
 ## ⚙️ CI/CD Pipeline — Jenkins Declarative Script
@@ -254,10 +270,15 @@ Pipeline name: **`dev pipeline`** | Agent: `node { label 'prod' }`
 | **7. deploy through Stack** | Manual gated deployment | Input: *"Can I deploy the application - DailyNeeds ?"* → `docker stack deploy -c docker-compose.yml DailyNeeds` |
 | **post \| always** | Build notification | Email sent to `behara.rohitkumar1@gmail.com` with build status + log URL |
 
-📸 Pipeline script references:
-[`piplinescript-1.png`](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/piplinescript-1.png) ·
-[`pipelinescript-2.png`](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/pipelinescript-2.png) ·
-[`postbuildactions.png`](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/postbuildactions.png)
+📸 **Pipeline script references:**
+
+| Pipeline Script (1) | Pipeline Script (2) |
+|---|---|
+| ![pipelinescript-1](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/piplinescript-1.png) | ![pipelinescript-2](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/pipelinescript-2.png) |
+
+**Post-Build Actions:**
+
+![postbuildactions](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/postbuildactions.png)
 
 ### 📧 Sample Build Notification
 > **Subject:** Build Status: dev pipeline #19
@@ -296,8 +317,8 @@ Captured directly from live SonarQube dashboards for **both releases**:
 | **Coverage / Duplication (new lines)** | Not applicable — 0 new lines | — |
 | **Analyzed** | July 2, 2026 · 12:49 PM | — |
 
-| | v1 | v2 |
-|---|---|---|
+| v1 | v2 |
+|---|---|
 | ![sonar-v1](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/sonarqube-v1.png) | ![sonar-v2](https://raw.githubusercontent.com/BRK-Devops/DailyNeeds-PHP-Docker/main/output-sccreenshots/sonarqube-v2.png) |
 
 > ⚙️ Quality Gate used: **SonarQube built-in default ruleset ("Sonar way")** — both releases passed with **zero bugs and zero vulnerabilities**.
