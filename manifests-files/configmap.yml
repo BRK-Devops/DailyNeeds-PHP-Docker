@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mycm
+data:
+  app_name: "php-app"
+  client: "tcs"

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-state
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dailyneeds-db
+  template:
+    metadata:
+      labels:
+        app: dailyneeds-db
+    spec:
+      containers:
+        - name: cont-1
+          image: brkdockerhub/phpapp-repo:php-image
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: mypvc
+              mountPath: /usr/share/nginx/html
+          envFrom:
+            - secretRef:
+                name: mysecret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+            limits:
+              cpu: "200m"
+              memory: "200Mi"
+  volumeClaimTemplates:
+    - metadata:
+        name: mypvc
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: myrq
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: "200Mi" 
+    limits.cpu: "4"
+    limits.memory: "400Mi"

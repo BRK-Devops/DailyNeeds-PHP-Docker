@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dailyneeds
+  template:
+    metadata:
+      labels:
+        app: dailyneeds
+    spec:
+      containers:
+        - name: cont-1
+          image: brkdockerhub/phpapp-repo:php-image
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: mycm
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+            limits:
+              cpu: "200m"
+              memory: "200Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 10
