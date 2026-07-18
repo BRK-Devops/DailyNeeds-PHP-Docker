@@ -3,7 +3,8 @@ kind: StatefulSet
 metadata:
   name: db-state
 spec:
-  replicas: 2
+  replicas: 1
+  serviceName: db          # required
   selector:
     matchLabels:
       app: dailyneeds-db
@@ -13,29 +14,32 @@ spec:
         app: dailyneeds-db
     spec:
       containers:
-        - name: cont-1
-          image: brkdockerhub/phpapp-repo:php-image
+        - name: mysql
+          image: mysql:5.7
           ports:
-            - containerPort: 80
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: db-password
           volumeMounts:
-            - name: mypvc
-              mountPath: /usr/share/nginx/html
-          envFrom:
-            - secretRef:
-                name: mysecret
+            - name: mysql-data-new
+              mountPath: /var/lib/mysql
+              subPath: mysql
           resources:
             requests:
-              cpu: "100m"
-              memory: "100Mi"
+              cpu: "50m"
+              memory: "256Mi"
             limits:
-              cpu: "200m"
-              memory: "200Mi"
+              cpu: "100m"
+              memory: "512Mi"
   volumeClaimTemplates:
     - metadata:
-        name: mypvc
+        name: mysql-data-new
       spec:
-        accessModes:
-          - ReadWriteOnce
+        accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
             storage: 2Gi
